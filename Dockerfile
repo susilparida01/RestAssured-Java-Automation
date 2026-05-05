@@ -1,15 +1,17 @@
-# Use Maven with JDK 21
+# Maven + JDK 21 base image
 FROM maven:3.9.6-eclipse-temurin-21
 
-# Set working directory
+# Working directory inside container
 WORKDIR /app
 
-# Copy pom.xml and download dependencies
+# Copy project files
 COPY pom.xml .
+
+# Download dependencies (cached layer)
 RUN mvn dependency:go-offline -B
 
-# Copy project
+# Copy full project
 COPY . .
 
-# Default command
+# Default command (used if no override)
 CMD ["mvn", "test"]

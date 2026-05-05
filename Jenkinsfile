@@ -24,45 +24,30 @@ pipeline {
 
         stage('Run CRUD Tests') {
             steps {
-                script {
-                    try {
-                        bat """
-                        docker run --rm %IMAGE_NAME% mvn test -DsuiteXmlFile=testng-apitestcrud.xml
-                        """
-                    } finally {
-                        bat """
-                        if not exist target\\final-reports mkdir target\\final-reports
-                        """
-                    }
-                }
+                bat """
+                docker run --rm -v %cd%:/app %IMAGE_NAME% mvn test -DsuiteXmlFile=testng-apitestcrud.xml
+                """
             }
         }
 
         stage('Run Auth Tests') {
             steps {
-                script {
-                    try {
-                        bat """
-                        docker run --rm %IMAGE_NAME% mvn test -DsuiteXmlFile=testng-authApiTestCrud.xml
-                        """
-                    } finally {
-                        bat """
-                        if not exist target\\final-reports mkdir target\\final-reports
-                        """
-                    }
-                }
+                bat """
+                docker run --rm -v %cd%:/app %IMAGE_NAME% mvn test -DsuiteXmlFile=testng-authApiTestCrud.xml
+                """
             }
         }
     }
 
     post {
         always {
-            // Use junit instead of testng
-            junit '**/target/surefire-reports/*.xml'
+            // Safely publish TestNG/Surefire results
+            junit testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true
 
-            // Archive reports
+            // Archive HTML reports (Extent reports if present)
             archiveArtifacts artifacts: 'target/**/*.html', allowEmptyArchive: true
 
+            // Clean workspace
             cleanWs()
         }
     }
