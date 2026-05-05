@@ -1,14 +1,25 @@
 pipeline {
-    agent {
-        dockerfile {
-            filename 'Dockerfile'
-            // Reuse the Maven local repository from the host to speed up builds
-            args '-v /root/.m2:/root/.m2'
-        }
+    agent any
+
+    environment {
+        IMAGE_NAME = "restassured-automation-demo"
     }
 
     stages {
+        stage('Docker Build') {
+            steps {
+                sh "docker build -t ${IMAGE_NAME} ."
+            }
+        }
+
         stage('Environment Check') {
+            agent {
+                docker {
+                    image "${IMAGE_NAME}"
+                    args '-v /root/.m2:/root/.m2'
+                    reuseNode true
+                }
+            }
             steps {
                 sh 'java -version'
                 sh 'mvn -version'
@@ -16,6 +27,13 @@ pipeline {
         }
 
         stage('Run CRUD Tests') {
+            agent {
+                docker {
+                    image "${IMAGE_NAME}"
+                    args '-v /root/.m2:/root/.m2'
+                    reuseNode true
+                }
+            }
             steps {
                 script {
                     try {
@@ -30,6 +48,13 @@ pipeline {
         }
 
         stage('Run Auth Tests') {
+            agent {
+                docker {
+                    image "${IMAGE_NAME}"
+                    args '-v /root/.m2:/root/.m2'
+                    reuseNode true
+                }
+            }
             steps {
                 script {
                     try {
