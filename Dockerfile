@@ -1,15 +1,15 @@
-# Use an official Maven image with JDK 21 as the base
+# Use Maven with JDK 21
 FROM maven:3.9.6-eclipse-temurin-21
 
-# Set the working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Copy the pom.xml and download dependencies (cached layer)
+# Copy pom.xml and download dependencies
 COPY pom.xml .
 RUN mvn dependency:go-offline -B
 
-# Copy the rest of the application code
+# Copy project
 COPY . .
 
-# Default command (can be overridden by Jenkins)
+# Default command
 CMD ["mvn", "test"]
