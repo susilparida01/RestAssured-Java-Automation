@@ -53,9 +53,9 @@ mvn clean test -DsuiteXmlFile=testng-authApiTestCrud.xml
 
 ## 📊 Reporting
 
-The framework uses **ExtentReports** for visual test results. After execution, reports are generated in the `test-output` directory:
+The framework uses **ExtentReports** for visual test results. After execution, reports are generated in the `target/report` directory:
 
-*   Open `test-output/ExtentReport.html` in any web browser to view the detailed results, including pass/fail status and logs.
+*   Open `target/report/extent-report.html` in any web browser to view the detailed results, including pass/fail status and logs.
 
 ## ⚙️ Configuration
 
