@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Docker Build') {
             steps {
-                sh "docker build -t ${IMAGE_NAME} ."
+                bat "docker build -t ${IMAGE_NAME} ."
             }
         }
 
@@ -21,8 +21,8 @@ pipeline {
                 }
             }
             steps {
-                sh 'java -version'
-                sh 'mvn -version'
+                bat 'java -version'
+                bat 'mvn -version'
             }
         }
 
@@ -37,11 +37,11 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'mvn test -DsuiteXmlFile=testng-apitestcrud.xml'
+                        bat 'mvn test -DsuiteXmlFile=testng-apitestcrud.xml'
                     } finally {
                         // Preserve the report for this specific suite
-                        sh 'mkdir -p target/final-reports'
-                        sh 'cp target/report/extent-report.html target/final-reports/crud-extent-report.html || true'
+                        bat 'mkdir -p target/final-reports'
+                        bat 'cp target/report/extent-report.html target/final-reports/crud-extent-report.html || true'
                     }
                 }
             }
@@ -58,11 +58,11 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'mvn test -DsuiteXmlFile=testng-authApiTestCrud.xml'
+                        bat 'mvn test -DsuiteXmlFile=testng-authApiTestCrud.xml'
                     } finally {
                         // Preserve the report for this specific suite
-                        sh 'mkdir -p target/final-reports'
-                        sh 'cp target/report/extent-report.html target/final-reports/auth-extent-report.html || true'
+                        bat 'mkdir -p target/final-reports'
+                        bat 'cp target/report/extent-report.html target/final-reports/auth-extent-report.html || true'
                     }
                 }
             }
