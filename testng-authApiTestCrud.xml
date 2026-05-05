@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Authenticated API Test Suite">
+  <listeners>
+    <listener class-name="com.simplilearn.RestAssuredAutomationDemo.reporting.ExtentReportListener"/>
+  </listeners>
+  <test name="Authentcated Object Lifecycle Test">
+    <classes>
+      <class name="com.simplilearn.RestAssuredAutomationDemo.authApiTestsCrud.GetAllObjectsWithAuth"/>      
+      <class name="com.simplilearn.RestAssuredAutomationDemo.authApiTestsCrud.PostObjectWithAuth"/>
+      <class name="com.simplilearn.RestAssuredAutomationDemo.authApiTestsCrud.GetObjectWithAuth"/>
+      <class name="com.simplilearn.RestAssuredAutomationDemo.authApiTestsCrud.UpdateObjectWithAuth"/>
+      <class name="com.simplilearn.RestAssuredAutomationDemo.authApiTestsCrud.DeleteObjectWithAuth"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

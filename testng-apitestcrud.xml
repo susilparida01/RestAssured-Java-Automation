@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="API CRUD Test Suite">
+  <listeners>
+    <listener class-name="com.simplilearn.RestAssuredAutomationDemo.reporting.ExtentListener"/>
+  </listeners>
+  <test name="CRUD Operation Test">
+    <classes>
+
+      <class name="com.simplilearn.RestAssuredAutomationDemo.ApiTestsCrud.PostObject"/>
+      <class name="com.simplilearn.RestAssuredAutomationDemo.ApiTestsCrud.GetObject"/>
+      <class name="com.simplilearn.RestAssuredAutomationDemo.ApiTestsCrud.UpdateObject"/>
+      <class name="com.simplilearn.RestAssuredAutomationDemo.ApiTestsCrud.DeleteObject"/>
+
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
