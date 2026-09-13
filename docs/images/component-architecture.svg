@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Component architecture for the RestAssured automation project</title>
+  <desc id="desc">A component diagram showing commands, Maven, TestNG suites, test classes, base classes, config, reporting, Docker, Jenkins, and the target API.</desc>
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#172033" flood-opacity="0.16"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#3b4a60"/>
+    </marker>
+    <style>
+      .bg { fill: #f7f9fc; }
+      .box { fill: #ffffff; stroke: #c8d3e1; stroke-width: 2; filter: url(#shadow); }
+      .box-blue { fill: #eef6ff; stroke: #4f86c6; stroke-width: 2; filter: url(#shadow); }
+      .box-green { fill: #edf8f1; stroke: #40916c; stroke-width: 2; filter: url(#shadow); }
+      .box-gold { fill: #fff8e6; stroke: #bf8c00; stroke-width: 2; filter: url(#shadow); }
+      .box-purple { fill: #f8f0ff; stroke: #7b2cbf; stroke-width: 2; filter: url(#shadow); }
+      .title { font: 700 24px Arial, sans-serif; fill: #172033; }
+      .node-title { font: 700 17px Arial, sans-serif; fill: #172033; }
+      .text { font: 400 14px Arial, sans-serif; fill: #334155; }
+      .small { font: 400 12px Arial, sans-serif; fill: #526173; }
+      .arrow { stroke: #3b4a60; stroke-width: 2.6; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #64748b; stroke-width: 2.2; stroke-dasharray: 8 6; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="760"/>
+  <text x="600" y="48" text-anchor="middle" class="title">RestAssured Automation Demo - Component Architecture</text>
+  <text x="600" y="74" text-anchor="middle" class="small">How project components collaborate during local, Docker, and Jenkins execution</text>
+  <rect x="60" y="120" width="210" height="86" rx="8" class="box-blue"/>
+  <text x="165" y="150" text-anchor="middle" class="node-title">Engineer / IDE</text>
+  <text x="165" y="176" text-anchor="middle" class="text">Runs Maven or TestNG XML</text>
+  <rect x="60" y="285" width="210" height="86" rx="8" class="box-blue"/>
+  <text x="165" y="315" text-anchor="middle" class="node-title">Jenkins Pipeline</text>
+  <text x="165" y="341" text-anchor="middle" class="text">Builds image and runs suites</text>
+  <rect x="330" y="120" width="210" height="86" rx="8" class="box-green"/>
+  <text x="435" y="150" text-anchor="middle" class="node-title">Maven Surefire</text>
+  <text x="435" y="176" text-anchor="middle" class="text">Uses -DsuiteXmlFile</text>
+  <rect x="330" y="285" width="210" height="86" rx="8" class="box-green"/>
+  <text x="435" y="315" text-anchor="middle" class="node-title">Docker Image</text>
+  <text x="435" y="341" text-anchor="middle" class="text">JDK 21 + Maven runtime</text>
+  <rect x="600" y="95" width="230" height="80" rx="8" class="box-gold"/>
+  <text x="715" y="125" text-anchor="middle" class="node-title">testng-apitestcrud.xml</text>
+  <text x="715" y="151" text-anchor="middle" class="text">Basic CRUD classes</text>
+  <rect x="600" y="205" width="230" height="80" rx="8" class="box-gold"/>
+  <text x="715" y="235" text-anchor="middle" class="node-title">testng-authApiTestCrud.xml</text>
+  <text x="715" y="261" text-anchor="middle" class="text">Authenticated CRUD classes</text>
+  <rect x="600" y="330" width="230" height="88" rx="8" class="box"/>
+  <text x="715" y="359" text-anchor="middle" class="node-title">BaseApiTest</text>
+  <text x="715" y="384" text-anchor="middle" class="text">RestAssured base URI</text>
+  <text x="715" y="404" text-anchor="middle" class="text">logging and shared object id</text>
+  <rect x="600" y="470" width="230" height="88" rx="8" class="box"/>
+  <text x="715" y="499" text-anchor="middle" class="node-title">Rest-Assured Tests</text>
+  <text x="715" y="524" text-anchor="middle" class="text">POST, GET, PUT, DELETE</text>
+  <text x="715" y="544" text-anchor="middle" class="text">status/header/body assertions</text>
+  <rect x="905" y="205" width="230" height="80" rx="8" class="box"/>
+  <text x="1020" y="235" text-anchor="middle" class="node-title">config.properties</text>
+  <text x="1020" y="261" text-anchor="middle" class="text">baseURI and x-api-key</text>
+  <rect x="905" y="360" width="230" height="86" rx="8" class="box-purple"/>
+  <text x="1020" y="390" text-anchor="middle" class="node-title">ExtentReportListener</text>
+  <text x="1020" y="416" text-anchor="middle" class="text">TestNG pass/fail/skip events</text>
+  <rect x="905" y="505" width="230" height="86" rx="8" class="box-purple"/>
+  <text x="1020" y="535" text-anchor="middle" class="node-title">Extent HTML Report</text>
+  <text x="1020" y="561" text-anchor="middle" class="text">target/report/extent-report.html</text>
+  <rect x="600" y="630" width="230" height="80" rx="8" class="box-green"/>
+  <text x="715" y="660" text-anchor="middle" class="node-title">REST API</text>
+  <text x="715" y="686" text-anchor="middle" class="text">https://api.restful-api.dev</text>
+  <path d="M270 163 L330 163" class="arrow"/>
+  <path d="M270 328 L330 328" class="arrow"/>
+  <path d="M435 285 L435 211" class="arrow"/>
+  <path d="M540 163 L600 135" class="arrow"/>
+  <path d="M540 173 L600 245" class="arrow"/>
+  <path d="M715 175 L715 330" class="arrow"/>
+  <path d="M715 285 L715 330" class="arrow"/>
+  <path d="M830 245 L905 245" class="dash"/>
+  <path d="M715 418 L715 470" class="arrow"/>
+  <path d="M830 514 L905 403" class="dash"/>
+  <path d="M1020 446 L1020 505" class="arrow"/>
+  <path d="M715 558 L715 630" class="arrow"/>
+</svg>
